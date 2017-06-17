@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -103,7 +103,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -390,7 +390,7 @@
       
         
           
-            <p>为什么要使用jna,jna比jni好早哪里？<br>1.JNA(Java Native Access)：建立在JNI之上的Java开源框架，SUN主导开发，用来调用C、C++代码，尤其是底层库文件（windows中叫dll文件，linux下是so【shared object】文件）。<br>2.jni调用底层库文件需要在c/c++源代码中引入jni.h,编写类似JNIEXPORT jboolean JNICALLJavajava包名方法名的c/c++文件,然后使用java层传递过来的JNIEnv，JNIVM与源文件沟通。这样java本地方法才可以找到C中的方法。然而jna可以在java项目中直接调用c、c++的动态库文件。所以在JAVA工程中使用jna是非常方便的，下面进入实战。</p>
+            <p><strong>为什么要使用jna,jna比jni好早哪里？</strong><br>1.JNA(Java Native Access)：建立在JNI之上的Java开源框架，SUN主导开发，用来调用C、C++代码，尤其是底层库文件（windows中叫dll文件，linux下是so【shared object】文件）。<br>2.jni调用底层库文件需要在c/c++源代码中引入jni.h,编写类似JNIEXPORT jboolean JNICALLJavajava包名方法名的c/c++文件,然后使用java层传递过来的JNIEnv，JNIVM与源文件沟通。这样java本地方法才可以找到C中的方法。然而jna可以在java项目中直接调用c、c++的动态库文件。所以在JAVA工程中使用jna是非常方便的，下面进入实战。</p>
 <h1 id="一-生成使用VS生成dll文件。"><a href="#一-生成使用VS生成dll文件。" class="headerlink" title="一 生成使用VS生成dll文件。"></a>一 生成使用VS生成dll文件。</h1><p><img src="http://i.imgur.com/MM9Lex4.png" alt=""><br><img src="http://i.imgur.com/eIfax0G.png" alt=""><br>分别编写头文件和源文件，注意声明extern “C” _declspec(dllexport) 外部调用<br><img src="http://i.imgur.com/AxXjbgQ.png" alt=""><br><img src="http://i.imgur.com/qElB9X4.png" alt=""><br>然后生成解决方案，在项目目录中就可以找到Win32Project2.dll文件<br>注意：默认生成的是32位的dll,如果你的java是64位的就需要生成64位的dll文件</p>
 <h1 id="二-将dll导入java项目中并调用"><a href="#二-将dll导入java项目中并调用" class="headerlink" title="二 将dll导入java项目中并调用"></a>二 将dll导入java项目中并调用</h1><p>1.新建java工程，下载jna.jar和jna_platform.jar 并导入到java project。具体的目录结构和源代码如下所示<br><img src="http://i.imgur.com/zMerW8a.png" alt=""><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Clibrary</span>  <span class="keyword">extends</span> <span class="title">Library</span></span>&#123;</div><div class="line">        Clibrary INSTATNCE=(Clibrary)Native.loadLibrary(<span class="string">"Win32Project2"</span>,Clibrary.class);</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> c=Clibrary.INSTATNCE.add(<span class="number">2</span>, <span class="number">2</span>);</div><div class="line">        System.out.print(<span class="string">"------c="</span>+c);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>2.导入dll文件，并编写调用代码打印输出结果。如果返回值和参数是对象的话可以使用jna的API Pointer.<br><img src="http://i.imgur.com/IIx2RNE.png" alt=""></p>
@@ -636,6 +636,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
 
   
 
